@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+        <meta name="theme-color" content="blue">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOCUMENTO 1</title>
+  </head>
+  <body>
+    <main>
+      <h1>Mensagem de pagamento</h1>
+      <p>Pagamento em ORDEM 🤑</p>
+
+      <script>
+        var nome ="Leonildo";
+        const valor = 10000;
+        function notifyUser(message) {
+          if (Notification.permission === "granted") {
+            new Notification(message);
+          } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then((permission) => {
+              if (permission === "granted") {
+                new Notification(message);
+              }
+            });
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", (event) => {
+          notifyUser("Hola! " + nome + " O seu pagamento foi aprovado! " + valor + " foram adicionados a sua conta.");
+        });
+      </script>
+    </main>
+  </body>
+</html>
