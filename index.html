@@ -2,34 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-        <meta name="theme-color" content="blue">
+    <meta name="theme-color" content="blue" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOCUMENTO 1</title>
   </head>
+  <style>
+    body {
+      display: flex;
+
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    main {
+      margin: 10px auto;
+    }
+    article {
+      border: 1px solid #0000002a;
+      text-align: left;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.064);
+      background-color: #ffffff;
+      margin: 0 auto;
+    }
+    a button {
+      margin-top: 20px;
+      padding: 15px;
+      border: none;
+      background-color: rgb(174, 214, 174);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
   <body>
     <main>
-      <h1>Mensagem de pagamento</h1>
-      <p>Pagamento em ORDEM 🤑</p>
-
-      <script>
-        var nome ="Leonildo";
-        const valor = 10000;
-        function notifyUser(message) {
-          if (Notification.permission === "granted") {
-            new Notification(message);
-          } else if (Notification.permission !== "denied") {
-            Notification.requestPermission().then((permission) => {
-              if (permission === "granted") {
-                new Notification(message);
-              }
-            });
-          }
-        }
-
-        document.addEventListener("DOMContentLoaded", (event) => {
-          notifyUser("Hola! " + nome + " O seu pagamento foi aprovado! " + valor + " foram adicionados a sua conta.");
-        });
-      </script>
+      <article>
+        <h1>Mensagem de pagamento</h1>
+        <p>Pagamento em ORDEM 🤑</p>
+      </article>
+      <a href=""><button>Receber mensagem</button></a>
     </main>
+
+    <script>
+      var nome = "Leonildo";
+      const valor = 10000;
+      function notifyUser(message) {
+        if (Notification.permission === "granted") {
+          new Notification(message);
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              new Notification(message);
+            }
+          });
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        notifyUser(
+          "Hola! " +
+            nome +
+            " O seu pagamento foi aprovado! " +
+            valor +
+            " foram adicionados a sua conta."
+        );
+      });
+    </script>
   </body>
 </html>
