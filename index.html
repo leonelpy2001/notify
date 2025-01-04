@@ -4,50 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="theme-color" content="rgb(174, 214, 174)" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOCUMENTO 1</title>
+    <title>pagamento</title>
+    <style>
+      body {
+        display: flex;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+      main {
+        margin: 10px auto;
+      }
+      article {
+        border: 1px solid #0000002a;
+        text-align: left;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.064);
+        background-color: #ffffff;
+        margin: 0 auto;
+      }
+      a button {
+        cursor: pointer;
+        border-radius: 30px;
+        background-color: rgb(174, 214, 174);
+        margin-top: 20px;
+        padding: 15px;
+        border: none;
+      }
+    </style>
   </head>
-  <style>
-    body {
-      display: flex;
-
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-    }
-    main {
-      margin: 10px auto;
-    }
-    article {
-      border: 1px solid #0000002a;
-      text-align: left;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.064);
-      background-color: #ffffff;
-      margin: 0 auto;
-    }
-    a button {
-      margin-top: 20px;
-      padding: 15px;
-      border: none;
-      background-color: rgb(174, 214, 174);
-      border-radius: 30px;
-      cursor: pointer;
-    }
-  </style>
   <body>
     <main>
       <article>
         <h1>Mensagem de pagamento</h1>
         <p>Pagamento em ORDEM 🤑</p>
       </article>
-      <a href=""><button>Receber mensagem</button></a>
+      <a href="#"><button id="notifyButton">Receber mensagem</button></a>
     </main>
 
     <script>
       var nome = "Leonildo";
       const valor = 10000;
+
       function notifyUser(message) {
-        if (Notification.permission === "granted") {
+        if (!("Notification" in window)) {
+          alert("Este navegador não suporta notificações de desktop");
+        } else if (Notification.permission === "granted") {
           new Notification(message);
         } else if (Notification.permission !== "denied") {
           Notification.requestPermission().then((permission) => {
@@ -58,14 +60,8 @@
         }
       }
 
-      document.addEventListener("DOMContentLoaded", (event) => {
-        notifyUser(
-          "Hola! " +
-            nome +
-            " O seu pagamento foi aprovado! " +
-            valor +
-            " foram adicionados a sua conta."
-        );
+      document.getElementById("notifyButton").addEventListener("click", () => {
+        notifyUser("Hola! " + nome + " O seu pagamento foi aprovado! " + valor + " foram adicionados a sua conta.");
       });
     </script>
   </body>
